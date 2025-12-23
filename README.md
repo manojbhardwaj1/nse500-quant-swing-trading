@@ -27,12 +27,21 @@ Retail traders often:
 
 > High-level architecture of the NSE500 quantitative swing trading system.
 
+<<<<<<< HEAD
 1. **CSV (NSE 500 Symbols)**
 2. **Market Data Fetch** — `yfinance`
 3. **Indicator Engine** — RSI, Moving Averages, Volume
 4. **Signal Generator** — BUY / HOLD / SELL
 5. **Portfolio Manager** — JSON persistence
 6. **Daily Scan Report** — CSV output
+=======
+1. **CSV (NSE 500 Symbols)** — Static universe of tradable stocks  
+2. **Market Data Fetch** — OHLCV data via `yfinance`  
+3. **Indicator Engine** — RSI (7, 14, 30), Moving Averages (50, 200), Volume metrics  
+4. **Signal Generator** — BUY / HOLD / SELL decision logic  
+5. **Portfolio Manager** — JSON-based position tracking and persistence  
+6. **Daily Scan Report** — End-of-day CSV output for analysis
+>>>>>>> 49f3127 (Add Gradio app, stable scan runner, and improve README documentation)
 
 ## **⚙️ Detailed Workflow (Step-by-Step)**
 ### **Step 0 — Universe Selection**
