@@ -6,6 +6,11 @@
 This project is a rule-based quantitative swing trading system built using Python and NSE 500 equity data.
 The system scans the market daily, identifies high-probability long trades, manages open positions with predefined risk rules, and stores portfolio state persistently.
 
+## 🚀 Live Demo (Interactive)
+This project includes an interactive web interface built using **Gradio**. <br>
+▶ Users can run the daily NSE500 scan and view results directly in the browser. <br> 
+🔗 **Live App:** Will be available via Hugging Face Spaces after deployment.
+
 **The goal of this project is to demonstrate:**
 1. Applied quantitative finance concepts
 2. Technical indicator computation from raw OHLCV data
@@ -27,21 +32,12 @@ Retail traders often:
 
 > High-level architecture of the NSE500 quantitative swing trading system.
 
-<<<<<<< HEAD
-1. **CSV (NSE 500 Symbols)**
-2. **Market Data Fetch** — `yfinance`
-3. **Indicator Engine** — RSI, Moving Averages, Volume
-4. **Signal Generator** — BUY / HOLD / SELL
-5. **Portfolio Manager** — JSON persistence
-6. **Daily Scan Report** — CSV output
-=======
 1. **CSV (NSE 500 Symbols)** — Static universe of tradable stocks  
 2. **Market Data Fetch** — OHLCV data via `yfinance`  
 3. **Indicator Engine** — RSI (7, 14, 30), Moving Averages (50, 200), Volume metrics  
 4. **Signal Generator** — BUY / HOLD / SELL decision logic  
 5. **Portfolio Manager** — JSON-based position tracking and persistence  
 6. **Daily Scan Report** — End-of-day CSV output for analysis
->>>>>>> 49f3127 (Add Gradio app, stable scan runner, and improve README documentation)
 
 ## **⚙️ Detailed Workflow (Step-by-Step)**
 ### **Step 0 — Universe Selection**
@@ -125,11 +121,38 @@ $$RS = \frac{\text{Avg Gain}}{\text{Avg Loss}}$$
 - Historical signal analysis
 - Easy demo recording
 
-## **🛠 Tools & Technologies Used**
+## **▶ How to Run Locally**
+```bash
+### 1️⃣ Clone the repository
+git clone https://github.com/manojbhardwaj1/nse500-quant-swing-trading
+cd nse500-quant-swing-trading
+
+### 2️⃣ Create virtual environment
+python -m venv .venv
+Activate it:
+- Windows 
+.venv\Scripts\activate
+- Linux / macOS 
+source .venv/bin/activate
+
+### 3️⃣ Install dependencies
+pip install -r requirements.txt
+
+### 4️⃣ Run the system
+Run full batch scan (CLI) 
+python trading_system.py 
+
+Run interactive Gradio app 
+python app.py
+```
+
+## 🛠 Tools & Technologies Used
 - **Python 3.9+**
 - **pandas** — data processing
 - **numpy** — numerical computation
 - **yfinance** — market data
+- **Gradio** — interactive web UI
+- **Hugging Face Spaces** — live deployment
 - **JSON / CSV** — lightweight persistence
 - **VS Code** — development
 - **Git & GitHub** — version control
