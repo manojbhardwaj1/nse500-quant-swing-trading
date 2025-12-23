@@ -21,7 +21,12 @@ Retail traders often:
 ## **This system automates decision-making using mathematically defined rules and removes emotional bias.**
 
 ## **🧠 System Design (High Level)**
-![System Design Diagram](data/system_design.png)
+<p align="center">
+  <img src="data/system_design.png" alt="System Design Diagram" width="900">
+</p>
+
+> High-level architecture of the NSE500 quantitative swing trading system.
+
 1. **CSV (NSE 500 Symbols)**
 2. **Market Data Fetch** — `yfinance`
 3. **Indicator Engine** — RSI, Moving Averages, Volume
