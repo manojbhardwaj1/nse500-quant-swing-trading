@@ -21,6 +21,7 @@ Retail traders often:
 ## **This system automates decision-making using mathematically defined rules and removes emotional bias.**
 
 ## **🧠 System Design (High Level)**
+![System Design Diagram](data/system_design.png)
 1. **CSV (NSE 500 Symbols)**
 2. **Market Data Fetch** — `yfinance`
 3. **Indicator Engine** — RSI, Moving Averages, Volume
