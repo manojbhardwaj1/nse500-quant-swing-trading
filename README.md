@@ -132,21 +132,23 @@ $$RS = \frac{\text{Avg Gain}}{\text{Avg Loss}}$$
 - ✅ Deterministic rule-based logic
 - ✅ Easily extensible for backtesting
 
-## **📌 Future Enhancements**
-- Vectorized backtesting engine
-- Performance metrics (CAGR, drawdown)
-- Strategy optimization
-- Scheduled daily runs
-- Visualization dashboard
+## 📌 Future Enhancements
+- Vectorized backtesting engine  
+- Performance metrics (CAGR, Sharpe ratio, max drawdown)  
+- Strategy optimization (parameter sweeps, walk-forward analysis)  
+- **Statistical hypothesis testing for signal validation**  
+> Hypothesis testing will be used to statistically validate whether observed returns are significantly different from random market behavior.
+- Scheduled daily runs (Task Scheduler / Cron)  
+- Interactive visualization dashboard (PnL, equity curve, signals)
 
 ## **⚠️ Disclaimer**
 - This project is for educational and research purposes only.
 - It is not financial advice.
 
 ## **👤 Author**
-- **Manoj Bhardwaj**
-- Applied Mathematics | Quantitative Finance | Python
-- 📍 Bangalore, India
+**Manoj Bhardwaj** <br>
+Applied Mathematics | Quantitative Finance | Python <br>
+📍Bangalore, India
 
 
 
