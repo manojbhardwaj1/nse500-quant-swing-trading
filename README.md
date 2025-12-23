@@ -1,5 +1,7 @@
 ## **📈 Quantitative Swing Trading System — NSE 500 (Python)**
 
+## **This project is designed to be fully reproducible. Clone the repository, install dependencies, and run `trading_system.py` to generate daily NSE500 scan reports.**
+
 **🔍 Project Overview**
 This project is a rule-based quantitative swing trading system built using Python and NSE 500 equity data.
 The system scans the market daily, identifies high-probability long trades, manages open positions with predefined risk rules, and stores portfolio state persistently.
