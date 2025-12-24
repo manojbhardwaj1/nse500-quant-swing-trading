@@ -162,8 +162,6 @@ python app.py
 - **yfinance** — market data
 - **Gradio** — interactive web UI
 - **Hugging Face Spaces** — live deployment
-- **Gradio** — interactive web UI
-- **Hugging Face Spaces** — live deployment
 - **JSON / CSV** — lightweight persistence
 - **VS Code** — development
 - **Git & GitHub** — version control
