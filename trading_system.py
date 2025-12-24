@@ -36,6 +36,8 @@ REPORTS_DIR.mkdir(exist_ok=True)
 if not PORTFOLIO_PATH.exists():
     PORTFOLIO_PATH.write_text("[]")
 
+SAMPLE_SCAN_PATH = REPORTS_DIR / "sample_scan_output.csv"
+
 # ------------------ CSV SYMBOL LOADER ------------------
 def fetch_nse500_symbols() -> List[str]:
     """
@@ -240,5 +242,56 @@ def run():
     print(f"Scan saved: {scan_file}")
     print(f"New BUY signals: {len(buys)}")
 
+def run_scan() -> Path:
+    """
+    Entry point for Gradio / batch runs.
+    Returns path of the generated scan CSV.
+    """
+    symbols = fetch_nse500_symbols()
+
+    scan_results = []
+    buys = []
+
+    for symbol in symbols:
+        df = fetch_ohlcv(symbol)
+        time.sleep(0.5)
+
+        if df.empty:
+            continue
+
+        buy, info = check_buy(df)
+        scan_results.append({"symbol": symbol, "buy": buy, **info})
+
+        if buy:
+            add_position(symbol, info["price"])
+            buys.append(symbol)
+
+    # Save stable output for UI
+    df_out = pd.DataFrame(scan_results)
+    df_out.to_csv(SAMPLE_SCAN_PATH, index=False)
+
+    # Also save dated archive
+    dated_path = REPORTS_DIR / f"scan_{datetime.now():%Y%m%d}.csv"
+    df_out.to_csv(dated_path, index=False)
+
+    # Sell check
+    portfolio = load_portfolio()
+    for pos in portfolio:
+        if pos["status"] != "OPEN":
+            continue
+
+        sell, reason, price = check_sell(pos)
+        if sell:
+            pos["status"] = "CLOSED"
+            pos["sell_price"] = price
+            pos["sell_reason"] = reason
+
+    save_portfolio(portfolio)
+
+    return SAMPLE_SCAN_PATH
+
 if __name__ == "__main__":
-    run()
+    path = run_scan()
+    print(f"Scan completed → {path}")
+
+

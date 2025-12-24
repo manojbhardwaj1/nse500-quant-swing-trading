@@ -8,7 +8,7 @@ The system scans the market daily, identifies high-probability long trades, mana
 
 ## 🚀 Live Demo (Interactive)
 This project includes an interactive web interface built using **Gradio**. <br>
-▶ Users can run the daily NSE500 scan and view results directly in the browser. <br> 
+▶ Users can run the daily NSE500 scan and view results directly in the browser. <br>
 🔗 **Live App:** Will be available via Hugging Face Spaces after deployment.
 
 **The goal of this project is to demonstrate:**
@@ -145,12 +145,13 @@ python trading_system.py
 Run interactive Gradio app 
 python app.py
 ```
-
 ## 🛠 Tools & Technologies Used
 - **Python 3.9+**
 - **pandas** — data processing
 - **numpy** — numerical computation
 - **yfinance** — market data
+- **Gradio** — interactive web UI
+- **Hugging Face Spaces** — live deployment
 - **Gradio** — interactive web UI
 - **Hugging Face Spaces** — live deployment
 - **JSON / CSV** — lightweight persistence
