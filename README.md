@@ -1,5 +1,15 @@
 ## **📈 Quantitative Swing Trading System — NSE 500 (Python)**
 
+---
+title: NSE500 Quant Swing Trading
+emoji: "📈"
+colorFrom: "blue"
+colorTo: "green"
+sdk: "gradio"
+app_file: "app.py"
+license: "mit"
+---
+
 ## **This project is designed to be fully reproducible. Clone the repository, install dependencies, and run `trading_system.py` to generate daily NSE500 scan reports.**
 
 **🔍 Project Overview**
@@ -182,7 +192,6 @@ python app.py
 **Manoj Bhardwaj** <br>
 Applied Mathematics | Quantitative Finance | Python <br>
 📍Bangalore, India
-
 
 
 
