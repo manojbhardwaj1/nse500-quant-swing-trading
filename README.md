@@ -1,5 +1,3 @@
-## **📈 Quantitative Swing Trading System — NSE 500 (Python)**
-
 ---
 title: NSE500 Quant Swing Trading
 emoji: "📈"
@@ -9,6 +7,7 @@ sdk: "gradio"
 app_file: "app.py"
 license: "mit"
 ---
+## **📈 Quantitative Swing Trading System — NSE 500 (Python)**
 
 ## **This project is designed to be fully reproducible. Clone the repository, install dependencies, and run `trading_system.py` to generate daily NSE500 scan reports.**
 
@@ -19,7 +18,8 @@ The system scans the market daily, identifies high-probability long trades, mana
 ## 🚀 Live Demo (Interactive)
 This project includes an interactive web interface built using **Gradio**. <br>
 ▶ Users can run the daily NSE500 scan and view results directly in the browser. <br>
-🔗 **Live App:** Will be available via Hugging Face Spaces after deployment.
+🔗 **Live App:** https://manojbhardwaj1-nse500-quant-swing-trading.hf.space <br>
+The live interface displays BUY signals, SELL alerts, and full market context.
 
 **The goal of this project is to demonstrate:**
 1. Applied quantitative finance concepts

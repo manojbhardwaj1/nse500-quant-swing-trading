@@ -69,38 +69,25 @@ def fetch_nse500_symbols() -> List[str]:
 
 # ------------------ DATA FETCH ------------------
 def fetch_ohlcv(symbol: str, period="260d") -> pd.DataFrame:
-    """
-    Stable OHLCV fetch using yfinance.
-    Designed to avoid hanging, threading issues, and column bugs.
-    """
-    try:
-        df = yf.download(
-            tickers=symbol,
-            period=period,
-            interval="1d",
-            auto_adjust=False,
-            progress=False,
-            threads=False,      
-            group_by="column"   
-        )
+    for _ in range(2):  # max 2 attempts
+        try:
+            df = yf.download(
+                symbol,
+                period=period,
+                interval="1d",
+                progress=False,
+                threads=False,
+                timeout=10
+            )
 
-        if df is None or df.empty:
-            return pd.DataFrame()
+            if not df.empty:
+                if isinstance(df.columns, pd.MultiIndex):
+                    df.columns = df.columns.get_level_values(0)
+                return df[["Open", "High", "Low", "Close", "Volume"]].dropna()
+        except Exception:
+            pass
 
-        # Fix MultiIndex columns (Yahoo bug)
-        if isinstance(df.columns, pd.MultiIndex):
-            df.columns = df.columns.get_level_values(0)
-
-        required_cols = {"Open", "High", "Low", "Close", "Volume"}
-        if not required_cols.issubset(df.columns):
-            return pd.DataFrame()
-
-        df = df[["Open", "High", "Low", "Close", "Volume"]]
-        return df.dropna()
-
-    except Exception as e:
-        return pd.DataFrame()
-
+    return pd.DataFrame()
 
 # ------------------ INDICATORS ------------------
 def rsi(series: pd.Series, period: int) -> pd.Series:
@@ -242,16 +229,15 @@ def run():
     print(f"Scan saved: {scan_file}")
     print(f"New BUY signals: {len(buys)}")
 
-def run_scan() -> Path:
-    """
-    Entry point for Gradio / batch runs.
-    Returns path of the generated scan CSV.
-    """
+def run_scan():
+
     symbols = fetch_nse500_symbols()
 
     scan_results = []
-    buys = []
+    buy_rows = []
+    sell_rows = []
 
+    # ---------------- BUY SCAN ----------------
     for symbol in symbols:
         df = fetch_ohlcv(symbol)
         time.sleep(0.5)
@@ -260,38 +246,56 @@ def run_scan() -> Path:
             continue
 
         buy, info = check_buy(df)
-        scan_results.append({"symbol": symbol, "buy": buy, **info})
+
+        row = {
+            "symbol": symbol,
+            "buy": buy,
+            **info
+        }
+
+        scan_results.append(row)
 
         if buy:
             add_position(symbol, info["price"])
-            buys.append(symbol)
+            buy_rows.append(row)
 
-    # Save stable output for UI
-    df_out = pd.DataFrame(scan_results)
-    df_out.to_csv(SAMPLE_SCAN_PATH, index=False)
-
-    # Also save dated archive
-    dated_path = REPORTS_DIR / f"scan_{datetime.now():%Y%m%d}.csv"
-    df_out.to_csv(dated_path, index=False)
-
-    # Sell check
+    # ---------------- SELL CHECK ----------------
     portfolio = load_portfolio()
+
     for pos in portfolio:
         if pos["status"] != "OPEN":
             continue
 
         sell, reason, price = check_sell(pos)
+
         if sell:
             pos["status"] = "CLOSED"
             pos["sell_price"] = price
             pos["sell_reason"] = reason
 
+            sell_rows.append({
+                "symbol": pos["symbol"],
+                "exit_price": price,
+                "reason": reason
+            })
+
     save_portfolio(portfolio)
 
-    return SAMPLE_SCAN_PATH
+    # Convert to DataFrames
+    buy_df = pd.DataFrame(buy_rows)
+    sell_df = pd.DataFrame(sell_rows)
+    full_df = pd.DataFrame(scan_results)
+
+    return buy_df, sell_df, full_df
+
 
 if __name__ == "__main__":
-    path = run_scan()
-    print(f"Scan completed → {path}")
+    buys, sells, full = run_scan()
+    print(
+        f"Scan completed | BUY signals: {len(buys)} | "
+        f"SELL alerts: {len(sells)} | "
+        f"Universe scanned: {len(full)}"
+    )
+
 
 

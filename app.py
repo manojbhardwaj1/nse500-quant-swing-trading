@@ -1,33 +1,34 @@
 import gradio as gr
-import pandas as pd
 from trading_system import run_scan
 
 def run_trading_system():
     try:
-        output_path = run_scan()
-        df = pd.read_csv(output_path)
-        return df, f"✅ Scan completed successfully.\nRows: {len(df)}"
+        buys, sells, full = run_scan()
+        status = f"✅ Scan completed | BUY: {len(buys)} | SELL: {len(sells)}"
+        return buys, sells, full, status
     except Exception as e:
-        return None, f"❌ Error: {str(e)}"
+        return None, None, None, f"❌ Error: {e}"
 
 with gr.Blocks(title="NSE500 Quant Swing Trading System") as demo:
-    gr.Markdown(
-        """
-        # 📈 NSE500 Quantitative Swing Trading System
-        Rule-based offline quantitative strategy using RSI, MA & Volume.
-        """
-    )
+    gr.Markdown("# 📈 NSE500 Quantitative Swing Trading System")
 
     run_btn = gr.Button("▶ Run Daily Scan")
 
-    status = gr.Textbox(label="Status", lines=3)
-    output_table = gr.Dataframe(label="Scan Results")
+    status = gr.Textbox(label="Status", lines=2)
+
+    with gr.Tab("🟢 Buy Matrix"):
+        buy_table = gr.Dataframe(label="New BUY Signals")
+
+    with gr.Tab("🔴 Sell / Exit Alerts"):
+        sell_table = gr.Dataframe(label="Exit Signals")
+
+    with gr.Tab("🔍 Full Market Context"):
+        full_table = gr.Dataframe(label="Complete NSE500 Scan")
 
     run_btn.click(
         fn=run_trading_system,
         inputs=[],
-        outputs=[output_table, status]
+        outputs=[buy_table, sell_table, full_table, status]
     )
 
-if __name__ == "__main__":
-    demo.launch()
+demo.launch()
