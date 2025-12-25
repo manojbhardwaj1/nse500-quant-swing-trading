@@ -1,0 +1,19 @@
+# Virtual environment
+venv/
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# OS generated files
+desktop.ini
+.DS_Store
+
+# Editor settings (optional)
+.vscode/
+
+# Generated reports (keep sample manually if needed)
+reports/*.csv
+!reports/sample_scan_output.csv
