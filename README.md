@@ -11,7 +11,7 @@ license: "mit"
 
 ## **A production-grade framework for mathematical signal extraction and systematic risk modeling using Python.**
 
-**🔍 Project Overview**
+**🔍 Project Overview:** <br>
 This project is a modular quantitative research framework built to extract systematic signals from NSE 500 equity data. The system implements vectorized mathematical transformations, validates regime-aware signals, and manages portfolio state through a structured risk-engine.
 
 ## 🚀 Live Demo (Interactive)
@@ -28,7 +28,7 @@ The live interface displays BUY signals, SELL alerts, and full market context.
 3. Clean system design (data → signal → execution → persistence)
 4. Production-ready Python engineering practices
 
-**🎯 Problem Statement**
+**🎯 Problem Statement:** <br>
 Quantitative researchers face significant challenges in implementing theoretical models into production-ready pipelines. This system demonstrates how to automate mathematical decision-making through deterministic rules, ensuring research integrity and removing execution bias.
 1. Rely on subjective chart reading
 2. Manually calculate indicators
