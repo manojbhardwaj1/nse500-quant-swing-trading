@@ -1,5 +1,5 @@
 ---
-title: NSE500 Quant Swing Trading
+title: NSE 500 Systematic Quantitative Pipeline
 emoji: "📈"
 colorFrom: "blue"
 colorTo: "green"
@@ -7,13 +7,12 @@ sdk: "gradio"
 app_file: "app.py"
 license: "mit"
 ---
-## **📈 Quantitative Swing Trading System — NSE 500 (Python)**
+## **🧬 NSE 500 Systematic Quantitative Analysis Pipeline**
 
-## **This project is designed to be fully reproducible. Clone the repository, install dependencies, and run `trading_system.py` to generate daily NSE500 scan reports.**
+## **A production-grade framework for mathematical signal extraction and systematic risk modeling using Python.**
 
 **🔍 Project Overview**
-This project is a rule-based quantitative swing trading system built using Python and NSE 500 equity data.
-The system scans the market daily, identifies high-probability long trades, manages open positions with predefined risk rules, and stores portfolio state persistently.
+This project is a modular quantitative research framework built to extract systematic signals from NSE 500 equity data. The system implements vectorized mathematical transformations, validates regime-aware signals, and manages portfolio state through a structured risk-engine.
 
 ## 🚀 Live Demo (Interactive)
 This project includes an interactive web interface built using **Gradio**. <br>
@@ -30,7 +29,7 @@ The live interface displays BUY signals, SELL alerts, and full market context.
 4. Production-ready Python engineering practices
 
 **🎯 Problem Statement**
-Retail traders often:
+Quantitative researchers face significant challenges in implementing theoretical models into production-ready pipelines. This system demonstrates how to automate mathematical decision-making through deterministic rules, ensuring research integrity and removing execution bias.
 1. Rely on subjective chart reading
 2. Manually calculate indicators
 3. Lack discipline in risk management
