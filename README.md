@@ -17,7 +17,7 @@ This project is a modular quantitative research framework built to extract syste
 ## 🚀 Live Demo (Interactive)
 This project includes an interactive web interface built using **Gradio**. <br>
 ▶ Users can run the daily NSE500 scan and view results directly in the browser. <br>
-🔗 **Live App:** https://manojbhardwaj1-nse500-quant-swing-trading.hf.space <br>
+🔗 **Live App:** https://manojbhardwaj1-nse-quantitative-analysis-pipeline.hf.space/ <br>
 🔗 **Live Demo:** https://youtu.be/BdupG8LOEY0 (🎥 **System Walkthrough in Short**) <br>
 🔗 **Live Demo:** https://youtu.be/Z2G7dOs6Ydw (🎥 **System Walkthrough in Detail**) <br>
 The live interface displays BUY signals, SELL alerts, and full market context.
